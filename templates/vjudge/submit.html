@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block self_body %}
+<div class="container">
+<div class="row">
+<div class="col-md-9">
+<h3>源代码</h3>
+<textarea class="form-control code-text" form="submit-code" name="source_code" placeholder="在这里粘贴您的代码！" rows="20" style="width:100%;resize:none;"></textarea>
+</div>
+<div class="col-md-3">
+<h3>提交类型</h3>
+<input class="form-control" type="text" value="普通" readonly>
+<h3>题目编号</h3>
+<input class="form-control" type="text" value="{{ id }}" readonly>
+<h3>题目名称</h3>
+<input class="form-control" type="text" value="{{ title }}" readonly>
+<h3>编程语言</h3>
+<select class="form-control" form="submit-code" name="code_language">
+{% for options in language %}
+<option value={{ options }}>{{ options }}</option>
+{% end %}
+</select><br>
+<form id="submit-code" method="POST">
+{% raw xsrf_form_html() %}
+<button class="btn btn-primary btn-block" type="submit">提交</button>
+</form>
+</div>
+</div>
+</div>
+{% end %}

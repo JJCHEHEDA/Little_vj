@@ -5,7 +5,6 @@ from sqlalchemy.orm import *
 from db.model.problem import Problem
 from db.model.user import User
 from db.model.submission import Submission
-#from db.model.submission import Submission
 from db.base import Base
 
 class ProManagerORM():

@@ -9,9 +9,9 @@ from sqlalchemy import *
 from db.base import Base
 
 class Problem(Base):
-    __tablename__='newpro'
+    __tablename__='problem1'
 
-    pro_id = Column(Integer, primary_key=True)
+    pro_id = Column(String(50), primary_key=True)
     pro_title = Column(String(100), nullable=False)
     time_limit = Column(Integer, nullable=False,default=0)
     memory_limit = Column(Integer, nullable=False, default=0)

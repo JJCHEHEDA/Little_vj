@@ -3,7 +3,7 @@
 import tornado.web
 from db import orm
 from tornado.httpclient import HTTPClient
-from oj import hdu
+from oj import cf as hdu 
 from view import CookieHandler
 import tornado.gen
 import tornado.ioloop
@@ -37,7 +37,7 @@ class ProInfoHandler(CookieHandler):
 class ProSubmitHandler(CookieHandler):
     def get(self):
         the_id=self.get_query_argument('id')
-        the_id = int(the_id)
+        the_id = the_id
         the_title=pro_orm.GetTiById(the_id) 
         data={}
         data['id']=the_id

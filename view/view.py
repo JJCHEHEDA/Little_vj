@@ -3,7 +3,7 @@
 import tornado.web
 from db import orm
 from tornado.httpclient import HTTPClient
-from oj import cf as hdu 
+from oj import hdu_api as hdu_api
 from view import CookieHandler
 import tornado.gen
 import tornado.ioloop
@@ -14,6 +14,8 @@ from bs4 import BeautifulSoup as bs
 pro_orm = orm.ProManagerORM()
 user_orm = orm.UserManagerORM()
 sub_orm = orm.SubManagerORM()
+
+hdu = hdu_api.Client() #引用hdu api
 
 global haha 
 haha = False
@@ -45,7 +47,11 @@ class ProSubmitHandler(CookieHandler):
         self.render('./vjudge/submit.html', **data, language=hdu.Base().SUBMIT_LANGUAGE)
 
     def post(self):
-        hdu.SubmitHandler().user_login()
+        #检测是否登录，没有则用cookie登录，若还是登录失败，则普通登录，重新获取cookie
+        if not hdu.check_login():
+            if not hdu.cookies_login('YJaiLSY'):
+                hdu.login('YJaiLSY','865975626')
+        #获取提交的表单
         source_code=self.get_argument('source_code')
         language=self.get_argument('code_language')
         the_id=self.get_query_argument('id')

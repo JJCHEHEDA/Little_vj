@@ -80,16 +80,8 @@ class SubmitHandler(Base):
         return postdata
 
     def submiting(self, submit_data):
-        '''
-        response = HTTPClient().fetch(
-                self.HDU_SUBMIT_URL, method='POST', body=urllib.parse.urlencode(submit_data)
-                )
-        '''
-        print(submit_data)
-        data = urllib.parse.urlencode(submit_data).encode(encoding='utf-8')
-        request = urllib.request.Request(self.HDU_SUBMIT_URL, data, self.headers)
-        response = self.opener.open(request)
-
+        
+        
 
 
 

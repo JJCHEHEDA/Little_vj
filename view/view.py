@@ -34,6 +34,7 @@ class ProListHandler(CookieHandler):
 class ProInfoHandler(CookieHandler):
     def get(self, num):
         pro_info = pro_orm.GetProById(num)
+        print("pro_info is ",pro_info.description);
         self.render('./vjudge/pro_info.html', problem=pro_info)
 
 class ProSubmitHandler(CookieHandler):
@@ -47,7 +48,7 @@ class ProSubmitHandler(CookieHandler):
         self.render('./vjudge/submit.html', **data, language=hdu.Base().SUBMIT_LANGUAGE)
 
     def post(self):
-        #检测是否登录，没有则用cookie登录，若还是登录失败，则普通登录，重新获取cookie
+        #检测是否登录为登录状态，没有则用cookie登录，若还是登录失败说明cookie过期，则普通登录，重新获取cookie
         if not hdu.check_login():
             if not hdu.cookies_login('YJaiLSY'):
                 hdu.login('YJaiLSY','865975626')
@@ -57,11 +58,8 @@ class ProSubmitHandler(CookieHandler):
         the_id=self.get_query_argument('id')
 
         submit_data=hdu.SubmitHandler().get_submit_data(the_id, language, source_code)
-        hdu.SubmitHandler().submiting(submit_data) 
-        #self.render('./vjudge/status.html', flag=False, d={}, info=())
-        global haha
-        haha=True
-        self.redirect('/vjudge/status')
+        if (hdu.submitcode(submit_data)):
+            self.redirect('/vjudge/status')
 
 class StatusHandler(CookieHandler):
     @tornado.web.asynchronous

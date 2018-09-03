@@ -9,7 +9,7 @@ from db.base import Base
 
 class ProManagerORM():
     def __init__(self):
-        uri = 'mysql+mysqlconnector://root:@localhost/jjc'
+        uri = 'mysql+mysqlconnector://root:jjcheheda@localhost/little_vj'
         self.engine = create_engine(uri)
         self.Session = sessionmaker(bind=self.engine)
         self.session = self.Session()
@@ -39,7 +39,7 @@ class ProManagerORM():
 
 class UserManagerORM():
     def __init__(self):
-        url = 'mysql+mysqlconnector://root:@localhost/jjc'
+        url = 'mysql+mysqlconnector://root:jjcheheda@localhost/little_vj'
         self.engine = create_engine(url)
         self.Session = sessionmaker(bind=self.engine)
         self.session = self.Session()
@@ -67,7 +67,7 @@ class UserManagerORM():
 
 class SubManagerORM():
     def __init__(self):
-        url = 'mysql+mysqlconnector://root:@localhost/jjc'
+        url = 'mysql+mysqlconnector://root:jjcheheda@localhost/little_vj'
         self.engine = create_engine(url)
         self.Session = sessionmaker(bind=self.engine)
         self.session = self.Session()

@@ -9,7 +9,7 @@ from sqlalchemy import *
 from db.base import Base
 
 class Problem(Base):
-    __tablename__='problem1'
+    __tablename__='problem'
 
     pro_id = Column(String(50), primary_key=True)
     pro_title = Column(String(100), nullable=False)

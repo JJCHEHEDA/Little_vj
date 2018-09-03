@@ -49,6 +49,14 @@ class Client():
         with open(path, 'wb') as f:
             cookies_dic = requests.utils.dict_from_cookiejar(self.session.cookies)
             pickle.dump(cookies_dic, f)
+
+    def submitcode(self, submitform, proId):
+        submiturl = ''
+        response = self.post(submiturl, data = submitform)
+        if response.status_code == 200 or response.status_code == 300:
+            return True
+        else:
+            return False
     
     def login(self, username, password):
         self._clear()

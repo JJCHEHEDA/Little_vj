@@ -3,7 +3,7 @@
 from sqlalchemy import * 
 from sqlalchemy.orm import *
 
-uri = 'mysql+mysqlconnector://root:@localhost/jjc'
+uri = 'mysql+mysqlconnector://root:jjcheheda@localhost/little_vj'
 '''
 engine = create_engine(uri)
 Session = sessionmaker(bind=engine)
